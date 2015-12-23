@@ -4,6 +4,7 @@
       comment: "{{ item.comment }}" 
       uid: "{{ item.uid }}" 
       groups: "{{ item.groups }}"
+      shell: "/bin/bash"
     with_items: user_info
 
   - name: set up keys
@@ -19,5 +20,11 @@
       state: latest
     with_items: base_packages
 
-
+  - name: update sudoers
+    copy:
+      src: sudoers
+      dest: /etc/sudoers
+      owner: root
+      group: root
+      mode: 0400
     
