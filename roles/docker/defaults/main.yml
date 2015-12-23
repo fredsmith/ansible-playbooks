@@ -7,3 +7,4 @@ docker_required_packages:
   - linux-image-extra-virtual
 docker_packages:
   - docker-engine
+  - docker-compose
