@@ -1,0 +1,33 @@
+base_packages:
+      - vim
+      - tmux
+      - aptitude
+      - curl
+      - keychain
+user_info:
+      - name: 'root' 
+        comment: 'root' 
+        groups: 'root'
+        uid: '0'
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCcJriYd2XEyDIOgWLA83n/GxAgY2eIDRxx654ti+7WKQ+e4wNeprg2v1iodMCVNl2Uz/LOjA+/gLktEvT8EAKF2/XgNM3Kc7LNVu0lAZ26QLH1G5iBATrT+o0/uo26D0tLKelDS9JkJPpX1FDriegQIrZnVz/tFhipJhVfyxtlefNKcV574iw2BdCYtVWSIH4tLUmFswvn1xXV7x4zT7B38EDhWQHF+x+ox095SkMww9lVOHubc9W2cqmd0OFD2w64VAIAIxvoEwwrF6XvdFcRz64UUXikCT8ZTQKspYwger5juGUAQXQ++q+joOcoUxnJYEe/LtW+MhpKlvAPyDgi/mcRujM5UNXTCWmpi2FKQuY+hDJCtqwAp5FEh4CFt/amgRrsmeSszYonvW5LJMnqvxcuKQYFI2KQjvX0uLNpQtHCy6NKh2HViAtHeFbknub7U5xCSq39ulBk1F9N0YXm7IgGAy4uPcSA5uGLclQcBE5lhSS2ys7kBLAWV5Ip9xsKPpYqxmC8wjbsdcXCkBLSR7Ww1NEqPjsDCEpTWVUrXXFfehuGaYZDvXIy8iTZQQx8RBDp87AEiwp1oOl/5v7vJNz8VbACNlH85x4MxVhmfGhnFdNKOBrRvZEFp6FoZdBGcTB+qOMOlRq5sw5UinoLcp8uOx81MZ8Z981+3PJ0WQ== /home/derf/.ssh/key.rsa"
+      - name: 'derf' 
+        comment: 'Fred Smith'
+        uid: '1000'
+        groups: 'users,sudo'
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCcJriYd2XEyDIOgWLA83n/GxAgY2eIDRxx654ti+7WKQ+e4wNeprg2v1iodMCVNl2Uz/LOjA+/gLktEvT8EAKF2/XgNM3Kc7LNVu0lAZ26QLH1G5iBATrT+o0/uo26D0tLKelDS9JkJPpX1FDriegQIrZnVz/tFhipJhVfyxtlefNKcV574iw2BdCYtVWSIH4tLUmFswvn1xXV7x4zT7B38EDhWQHF+x+ox095SkMww9lVOHubc9W2cqmd0OFD2w64VAIAIxvoEwwrF6XvdFcRz64UUXikCT8ZTQKspYwger5juGUAQXQ++q+joOcoUxnJYEe/LtW+MhpKlvAPyDgi/mcRujM5UNXTCWmpi2FKQuY+hDJCtqwAp5FEh4CFt/amgRrsmeSszYonvW5LJMnqvxcuKQYFI2KQjvX0uLNpQtHCy6NKh2HViAtHeFbknub7U5xCSq39ulBk1F9N0YXm7IgGAy4uPcSA5uGLclQcBE5lhSS2ys7kBLAWV5Ip9xsKPpYqxmC8wjbsdcXCkBLSR7Ww1NEqPjsDCEpTWVUrXXFfehuGaYZDvXIy8iTZQQx8RBDp87AEiwp1oOl/5v7vJNz8VbACNlH85x4MxVhmfGhnFdNKOBrRvZEFp6FoZdBGcTB+qOMOlRq5sw5UinoLcp8uOx81MZ8Z981+3PJ0WQ== /home/derf/.ssh/key.rsa"
+      - name: 'jess'
+        comment: 'Jessica Smith'
+        groups: 'users'
+        uid: '1001' 
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmW5BnMCga/dAevGUxEDfncMYy+qndevCuXewzqx3QFWcCMcUbIcXiSarMiKWDY/2RYylZbdazBKtSjWOZ11xXsT2mlsQa3aiIWt2JFqqcfPzJIVikEGn3GvvgtNMhEKyE53Ts8SgjLZmx349wWYmbssokYxwbfmZjEyC8LUEht/d65CqVDn7ZhmlvQyCjTv8y6tuvNnp3KreQuePSt04MLFKUsV0kh47nA9Q5q4HKNIoCVE8l/C2pBfHc375bswKc6VuD+8j9UbZGAGoz2IAtabPFOHBG/dTphAYVhiz5vP6Z/zvJm2YXLb8wUd9iP5uZ9MogTJ7xCMt6bKaIm5Bf jess@twlightsparkle.xicada.com"
+      - name: 'andrew'
+        comment: 'Andrew Smith'
+        groups: 'users'
+        uid: '1002' 
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtZY2A1oUaFHjCrwJxp0AbfPmELGuPGMxFA4vUHDteA8dpe1cd8c+i040RxMUqmsny5CXUDrFLOlHT2aa1yy6aVNh2YddCAnJkjFzG32QG1SnXspNsFC5n9FAnFHidHsWgeI+iHdYBX2f/YczCd5rmLf+p5lxW1rNhRJCSeRTy16Xrf8MOrMagNioYOhF2XV35jT+EokrnBAEK8nAHlq0qOXV6+VmBl+shseiCp+NhL6NI+iImlY+aOJPs4Hs4L5cGZudinCgP5vTqUN7ui0WQxnXA5DEvkE1/L4FrrJysAxczaqS2JcHhmbuAcnAZ3UXN6L6OfxPMb2xSlpdXCneV andrew@jedigurl.xicada.com"
+      - name: 'sean'
+        comment: 'Sean Smith'
+        groups: 'users'
+        uid: '1003' 
+        key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCcJriYd2XEyDIOgWLA83n/GxAgY2eIDRxx654ti+7WKQ+e4wNeprg2v1iodMCVNl2Uz/LOjA+/gLktEvT8EAKF2/XgNM3Kc7LNVu0lAZ26QLH1G5iBATrT+o0/uo26D0tLKelDS9JkJPpX1FDriegQIrZnVz/tFhipJhVfyxtlefNKcV574iw2BdCYtVWSIH4tLUmFswvn1xXV7x4zT7B38EDhWQHF+x+ox095SkMww9lVOHubc9W2cqmd0OFD2w64VAIAIxvoEwwrF6XvdFcRz64UUXikCT8ZTQKspYwger5juGUAQXQ++q+joOcoUxnJYEe/LtW+MhpKlvAPyDgi/mcRujM5UNXTCWmpi2FKQuY+hDJCtqwAp5FEh4CFt/amgRrsmeSszYonvW5LJMnqvxcuKQYFI2KQjvX0uLNpQtHCy6NKh2HViAtHeFbknub7U5xCSq39ulBk1F9N0YXm7IgGAy4uPcSA5uGLclQcBE5lhSS2ys7kBLAWV5Ip9xsKPpYqxmC8wjbsdcXCkBLSR7Ww1NEqPjsDCEpTWVUrXXFfehuGaYZDvXIy8iTZQQx8RBDp87AEiwp1oOl/5v7vJNz8VbACNlH85x4MxVhmfGhnFdNKOBrRvZEFp6FoZdBGcTB+qOMOlRq5sw5UinoLcp8uOx81MZ8Z981+3PJ0WQ== /home/derf/.ssh/key.rsa"
+

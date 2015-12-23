@@ -1,0 +1,23 @@
+  - name: create accounts
+    user:
+      name: "{{ item.name }}" 
+      comment: "{{ item.comment }}" 
+      uid: "{{ item.uid }}" 
+      groups: "{{ item.groups }}"
+    with_items: user_info
+
+  - name: set up keys
+    authorized_key:
+      exclusive: true
+      user: "{{ item.name }}"
+      key: "{{ item.key }}"
+    with_items: user_info
+
+  - name: "install {{ item }}"
+    apt: 
+      pkg: "{{ item }}" 
+      state: latest
+    with_items: base_packages
+
+
+    
