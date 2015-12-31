@@ -4,6 +4,11 @@ base_packages:
       - aptitude
       - curl
       - keychain
+      - golang
+      - silversearcher-ag 
+base_groups:
+      - docker
+      - users
 user_info:
       - name: 'root' 
         comment: 'root' 

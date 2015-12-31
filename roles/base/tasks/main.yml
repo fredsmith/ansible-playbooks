@@ -1,3 +1,8 @@
+  - name: create groups
+    group:
+      name: "{{ item }}" 
+    with_items: base_groups
+
   - name: create accounts
     user:
       name: "{{ item.name }}" 
