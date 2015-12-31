@@ -1,0 +1,9 @@
+---
+
+- name: deploy media server
+  hosts: all
+  sudo: True
+  gather_facts: False
+  roles:
+    - sabnzbd
+    - sickbeard
