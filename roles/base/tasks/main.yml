@@ -19,7 +19,7 @@
       key: "{{ item.key }}"
     with_items: user_info
 
-  - name: "install {{ item }}"
+  - name: "install base-packages"
     apt: 
       pkg: "{{ item }}" 
       state: latest
