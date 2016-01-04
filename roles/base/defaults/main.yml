@@ -6,6 +6,7 @@ base_packages:
       - aptitude
       - curl
       - golang
+      - traceroute
       - silversearcher-ag 
 base_groups:
       - docker
