@@ -5,7 +5,6 @@ base_packages:
       - tmux
       - aptitude
       - curl
-      - keychain
       - golang
       - silversearcher-ag 
 base_groups:
