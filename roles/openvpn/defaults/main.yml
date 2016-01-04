@@ -1,0 +1,7 @@
+openvpn_server_hostname: 'home.derf.us'
+openvpn_server_port: '1194'
+openvpn_device_type: 'tun'
+openvpn_protocol: 'udp'
+openvpn_client_name: "{{ ansible_hostname }}"
+openvpn_packages:
+  - openvpn

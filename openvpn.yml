@@ -1,0 +1,8 @@
+- name: Configure openvpn client
+  hosts: all
+  sudo: True
+  gather_facts: True
+  roles:
+    - base
+    - openvpn
+

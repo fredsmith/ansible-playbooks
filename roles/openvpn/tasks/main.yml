@@ -1,0 +1,27 @@
+  - name: "install openvpn_packages"
+    apt: 
+      pkg: "{{ item }}" 
+      state: latest
+    with_items: openvpn_packages
+
+  - name: create /etc/openvpn/
+    file:
+      state: directory
+      path: /etc/openvpn
+      owner: root
+    
+  - name: update client.conf
+    template:
+      src: client.conf.j2
+      dest: /etc/openvpn/client.conf
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+    register: restart_openvpn
+ 
+  - name: restart openvpn
+    service:
+      name: openvpn
+      state: restarted
+    when: restart_openvpn.changed
+
