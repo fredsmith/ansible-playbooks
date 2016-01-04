@@ -1,0 +1,27 @@
+  - name: "install autofs_packages"
+    apt: 
+      pkg: "{{ item }}" 
+      state: latest
+    with_items: autofs_packages
+
+  - name: create /etc/auto.master.d
+    file:
+      state: directory
+      path: /etc/auto.master.d
+      owner: root
+    
+  - name: update net.autofs
+    copy:
+      src: net.autofs
+      dest: /etc/auto.master.d/net.autofs
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+    register: restart_autofs
+ 
+  - name: restart autofs
+    service:
+      name: autofs
+      state: restarted
+    when: restart_autofs.changed
+
