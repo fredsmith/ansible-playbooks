@@ -1,0 +1,22 @@
+  - name: "install nginx_proxy_packages"
+    apt: 
+      pkg: "{{ item }}" 
+      state: latest
+    with_items: nginx_proxy_packages
+
+  - name: update site.conf
+    template:
+      src: site.conf.j2
+      dest: "/etc/nginx/sites-enabled/{{ item.host }}.conf"
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+    with_items: "{{ nginx_proxy_hosts }}"
+    register: restart_nginx
+ 
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+    when: restart_nginx.changed
+

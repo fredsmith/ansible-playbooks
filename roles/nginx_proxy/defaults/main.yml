@@ -1,0 +1,9 @@
+nginx_proxy_packages:
+  - nginx
+nginx_proxy_ssl_dir: "/etc/nginx/ssl"
+nginx_proxy_static_root: "/var/www"
+nginx_proxy_hosts:
+  - { host: foo.site, backend: "1.2.3.4:8080", ssl: true }
+  - { host: bar.site, backend: "1.2.3.5:8080" }
+  - { host: baz.site, backend: "1.2.3.6:8080" }
+  - { host: biz.site, ssl: true }

@@ -1,0 +1,15 @@
+- name: Configure instance(s)
+  hosts: all
+  sudo: True
+  gather_facts: True
+  vars:
+    nginx_proxy_hosts:
+      - { host: fred.smith.bz, aliases: [derf.us, fredsmith.us, fredsmith.org, fredsmith.net ] }
+      - { host: jedigurl.com, aliases: [ jessica.smith.bz ] }
+      - { host: andrew.smith.bz }
+      - { host: sean.smith.bz }
+      - { host: nathan.smith.bz }
+  roles:
+    - base
+    - nginx_proxy
+
