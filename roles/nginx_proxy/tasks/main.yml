@@ -13,6 +13,13 @@
       mode: u=rw,g=r,o=r
     with_items: "{{ nginx_proxy_hosts }}"
     register: restart_nginx
+
+  - name: deploy sites
+    git:
+      dest: "{{ nginx_proxy_static_root}}/{{item.host}}"
+      repo: "{{ item.repo }}"
+    when: item.repo is defined
+    with_items: "{{ nginx_proxy_hosts }}"
  
   - name: restart nginx
     service:

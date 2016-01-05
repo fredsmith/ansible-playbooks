@@ -4,12 +4,12 @@
   gather_facts: True
   vars:
     nginx_proxy_hosts:
-      - { host: fred.smith.bz, aliases: [derf.us, fredsmith.us, fredsmith.org, fredsmith.net ] }
+      - { host: fred.smith.bz, aliases: [derf.us, fredsmith.us, fredsmith.org, fredsmith.net ]}
       - { host: jedigurl.com, aliases: [ jessica.smith.bz ] }
       - { host: andrew.smith.bz }
       - { host: sean.smith.bz }
       - { host: nathan.smith.bz }
-      - { host: pandora.smithfamily.io }
+      - { host: pandora.smithfamily.io , repo: "https://github.com/fredsmith/fredsmith.github.com.git"}
   roles:
     - base
     - nginx_proxy
