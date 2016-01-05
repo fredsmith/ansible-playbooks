@@ -9,6 +9,7 @@
       - { host: andrew.smith.bz }
       - { host: sean.smith.bz }
       - { host: nathan.smith.bz }
+      - { host: pandora.smithfamily.io }
   roles:
     - base
     - nginx_proxy
