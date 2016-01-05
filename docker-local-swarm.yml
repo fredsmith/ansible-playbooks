@@ -1,0 +1,9 @@
+- name: Configure local docker swarm
+  hosts: all
+  sudo: True
+  gather_facts: True
+  roles:
+    - base
+    - docker
+    - autofs
+
