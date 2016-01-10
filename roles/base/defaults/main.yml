@@ -1,6 +1,5 @@
 base_packages:
       - git
-      - git-hub
       - vim
       - tmux
       - aptitude
