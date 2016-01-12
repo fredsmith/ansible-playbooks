@@ -2,11 +2,27 @@ server {
   listen 80;
   listen [::]:80;
   server_name {{ item.host }}{% if item.aliases is defined %}{% for alias in item.aliases %} {{ alias }}{% endfor %}{% endif %};
+
   client_max_body_size 0;
- 
-  {% if item.ssl is defined %}
+
+  location /.well-known/acme-challenge/ {
+    alias {{nginx_proxy_static_root}}/acme-challenge/;
+  }
+  location ~ /\.git {
+      deny all;
+  }
+{% if item.ssl is defined %}
+  location / {
+    return 301 https://$host$request_uri;
+  }
+    
+}
+
+server {
   listen 443 ssl;
   listen [::]:443 ssl;
+  server_name {{ item.host }}{% if item.aliases is defined %}{% for alias in item.aliases %} {{ alias }}{% endfor %}{% endif %};
+
   ssl_certificate {{ nginx_proxy_ssl_dir }}/{{ item.host }}.pem;
   ssl_certificate_key {{ nginx_proxy_ssl_dir }}/{{ item.host }}.key;
   ssl_session_timeout 5m;
@@ -16,14 +32,11 @@ server {
   ssl_dhparam {{ nginx_proxy_ssl_dir}}/dhparam.pem;
   ssl_prefer_server_ciphers on;
 
-  if ($scheme != "https") 
-  {
-    rewrite ^ https://$host$request_uri? permanent;
+  location ~ /\.git {
+      deny all;
   }
-
-  {% endif %}
-
-  {% if item.php is defined %}
+{% endif %}
+{% if item.php is defined %}
   index index.php index.html index.htm;
 
   location ~ \.php$ {
@@ -33,22 +46,17 @@ server {
     fastcgi_index index.php;
     include fastcgi_params;
   }
-  {% endif %}
-
-  location /.well-known/acme-challenge {
-    root {{nginx_proxy_static_root}}/acme-challenge/;
-  }
-
-  {% if item.backend is defined %}
+{% endif %}
+{% if item.backend is defined %}
   location @{{item.host}}_backend {
     proxy_pass {{ item.backend }};
   }
   location / {
     try_files $uri @{{ item.host }}_backend;
   }
-  {% else %}
+{% else %}
   location / {
     root {{nginx_proxy_static_root}}/{{ item.host }};
   }
-  {% endif %}
+{% endif %}
 }
