@@ -7,45 +7,45 @@
       - { 
           host: fred.smith.bz, 
           aliases: [derf.us, fredsmith.us, fredsmith.org, fredsmith.net, www.derf.us, www.fredsmith.us, www.fredsmith.net, www.fredsmith.org], 
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/fred.smith.bz.git",
+          repo: "https://deploy:ceylf2Sleca@git.smith.bz/derf/fred.smith.bz.git",
           ssl: true,
           php: true
       }
       - { 
           host: git.smith.bz, 
-          backend: "http://10.7.0.102:3001",
+          backend: "https://10.7.0.102:3001",
           ssl: true,
           aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
       }
       - { 
           host: jedigurl.com, 
           aliases: [ www.jedigurl.com, jessica.smith.bz ],
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/jedigurl/jedigurl.com.git",
+          repo: "https://deploy:ceylf2Sleca@git.smith.bz/jedigurl/jedigurl.com.git",
           ssl: true,
           php: true
       }
       - { 
           host: andrew.smith.bz,
           aliases: [ andrew.smithfamily.io, andrew.smith.bz ],
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/andrew.smith.bz.git"
+          repo: "https://deploy:ceylf2Sleca@git.smith.bz/derf/andrew.smith.bz.git"
       }
       - { 
           host: sean.smith.bz,
           aliases: [ sean.smithfamily.io, sean.smith.bz ],
           ssl: true,
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/sean.smith.bz.git"
+          repo: "https://deploy:ceylf2Sleca@git.smith.bz/derf/sean.smith.bz.git"
       }
       - { 
           host: nathan.smith.bz,
           aliases: [ nathan.smithfamily.io, nathan.smith.bz ],
           ssl: true,
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/nathan.smith.bz.git"
+          repo: "https://deploy:ceylf2Sleca@git.smith.bz/derf/nathan.smith.bz.git"
       }
       - { 
           host: smith.bz,
           aliases: [ smithfamily.io, www.smith.bz, fredandjess.com, jessandfred.com, www.fredandjess.com, www.jessandfred.com, www.smithfamily.io, www.smithfamily.space ],
           ssl: true,
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/smith.bz.git"
+          repo: "https://deploy:ceylf2Sleca@git.smith.bz/derf/smith.bz.git"
       }
   roles:
     - base
