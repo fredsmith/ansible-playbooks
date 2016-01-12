@@ -14,6 +14,7 @@
       - { 
           host: git.smith.bz, 
           backend: "http://10.7.0.102:3001",
+          ssl: true,
           aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
       }
       - { 
@@ -25,18 +26,18 @@
       }
       - { 
           host: andrew.smith.bz,
-          aliases: [ andrew.smithfamily.io, www.andrew.smith.bz ],
+          aliases: [ andrew.smithfamily.io, andrew.smith.bz ],
           repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/andrew.smith.bz.git"
       }
       - { 
           host: sean.smith.bz,
-          aliases: [ sean.smithfamily.io, www.sean.smith.bz ],
+          aliases: [ sean.smithfamily.io, sean.smith.bz ],
           ssl: true,
           repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/sean.smith.bz.git"
       }
       - { 
           host: nathan.smith.bz,
-          aliases: [ nathan.smithfamily.io, www.nathan.smith.bz ],
+          aliases: [ nathan.smithfamily.io, nathan.smith.bz ],
           ssl: true,
           repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/nathan.smith.bz.git"
       }
