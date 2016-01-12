@@ -65,8 +65,8 @@
     when: item.ssl is defined
     with_items: "{{ nginx_proxy_hosts }}"
 
-- name: append intermediary certificates
-    shell: cat /etc/acme-tiny/intermediate.pem {{ nginx_proxy_ssl_dir }}/{{ item.host }}-host.crt > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.pem
+  - name: append intermediary certificates
+    shell: cat {{ nginx_proxy_ssl_dir }}/{{ item.host }}-host.crt /etc/acme-tiny/intermediate.pem > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.pem
     args:
       creates: "{{ nginx_proxy_ssl_dir }}/{{ item.host }}.pem"
     when: item.ssl is defined
