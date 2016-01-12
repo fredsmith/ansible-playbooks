@@ -47,8 +47,9 @@
     with_items: "{{ nginx_proxy_hosts }}"
  
   - name: generate CSRs
-    shell: openssl req -new -sha256 -key {{ nginx_proxy_ssl_dir }}/{{ item.host }}.key -subj '/C=US/ST=Massachusetts/L=Acton/O={{ item.host }}/OU=website/CN={{ item.host }}/subjectAltName=DNS:{{item.host}}{% if item.aliases is defined %}{% for alias in item.aliases %},DNS:{{ alias }}{% endfor %}{% endif %}/' > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.csr
+    shell: 'openssl req -new -sha256 -key {{ nginx_proxy_ssl_dir }}/{{ item.host }}.key -subj "/" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:{{item.host}}{% if item.aliases is defined %}{% for alias in item.aliases %},DNS:{{ alias }}{% endfor %}{% endif %}")) > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.csr'
     args:
+      executable: "/bin/bash"
       creates: "{{ nginx_proxy_ssl_dir }}/{{ item.host }}.csr"
     when: item.ssl is defined
     with_items: "{{ nginx_proxy_hosts }}"
