@@ -20,6 +20,7 @@
           host: jedigurl.com, 
           aliases: [ www.jedigurl.com, jessica.smith.bz ],
           repo: "http://deploy:ceylf2Sleca@git.smith.bz/jedigurl/jedigurl.com.git",
+          ssl: true,
           php: true
       }
       - { 
