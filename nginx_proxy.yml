@@ -30,17 +30,20 @@
       - { 
           host: sean.smith.bz,
           aliases: [ sean.smithfamily.io, www.sean.smith.bz ],
+          ssl: true,
           repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/sean.smith.bz.git"
       }
       - { 
           host: nathan.smith.bz,
           aliases: [ nathan.smithfamily.io, www.nathan.smith.bz ],
+          ssl: true,
           repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/nathan.smith.bz.git"
       }
       - { 
           host: smith.bz,
           aliases: [ smithfamily.io, www.smith.bz, fredandjess.com, jessandfred.com, www.fredandjess.com, www.jessandfred.com, www.smithfamily.io, www.smithfamily.space ],
-          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/andrew.smith.bz.git"
+          ssl: true,
+          repo: "http://deploy:ceylf2Sleca@git.smith.bz/derf/smith.bz.git"
       }
   roles:
     - base
