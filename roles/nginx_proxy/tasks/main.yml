@@ -1,3 +1,5 @@
+  - include_vars: vars/secrets.yml 
+
   - name: "install nginx_proxy_packages"
     apt: 
       pkg: "{{ item }}" 
@@ -18,41 +20,44 @@
       - "/etc/acme-tiny"
 
   - name: install account.key
-    copy:
-      src: account.key
+    template:
+      src: account.key.j2
       dest: /etc/acme-tiny/account.key
+      owner: root
+      group: root
+      mode: u=r
 
   - name: update site.conf
     template:
       src: site.conf.j2
-      dest: "/etc/nginx/sites-enabled/{{ item.host }}.conf"
+      dest: "/etc/nginx/sites-enabled/{{ item.key }}.conf"
       owner: root
       group: root
       mode: u=rw,g=r,o=r
-    with_items: "{{ nginx_proxy_hosts }}"
+    with_dict: "{{ nginx_proxy_hosts }}"
     register: restart_nginx
 
   - name: deploy sites
     git:
-      dest: "{{ nginx_proxy_static_root}}/{{item.host}}"
-      repo: "{{ item.repo }}"
-    when: item.repo is defined
-    with_items: "{{ nginx_proxy_hosts }}"
+      dest: "{{ nginx_proxy_static_root }}/{{ item.key }}"
+      repo: "{{ item.value.repo }}"
+    when: item.value.repo is defined
+    with_dict: "{{ nginx_proxy_hosts }}"
 
   - name: generate keys
-    shell: openssl genrsa 4096 > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.key
+    shell: openssl genrsa 4096 > {{ nginx_proxy_ssl_dir }}/{{ item.key }}.key
     args:
-      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.host }}.key"
-    when: item.ssl is defined
-    with_items: "{{ nginx_proxy_hosts }}"
+      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}.key"
+    when: item.value.ssl is defined
+    with_dict: "{{ nginx_proxy_hosts }}"
  
   - name: generate CSRs
-    shell: 'openssl req -new -sha256 -key {{ nginx_proxy_ssl_dir }}/{{ item.host }}.key -subj "/" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:{{item.host}}{% if item.aliases is defined %}{% for alias in item.aliases %},DNS:{{ alias }}{% endfor %}{% endif %}")) > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.csr'
+    shell: 'openssl req -new -sha256 -key {{ nginx_proxy_ssl_dir }}/{{ item.key }}.key -subj "/" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:{{ item.key }}{% if item.value.aliases is defined %}{% for alias in item.value.aliases %},DNS:{{ alias }}{% endfor %}{% endif %}")) > {{ nginx_proxy_ssl_dir }}/{{ item.key }}.csr'
     args:
       executable: "/bin/bash"
-      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.host }}.csr"
-    when: item.ssl is defined
-    with_items: "{{ nginx_proxy_hosts }}"
+      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}.csr"
+    when: item.value.ssl is defined
+    with_dict: "{{ nginx_proxy_hosts }}"
 
   - name: download intermediary cert
     get_url:
@@ -60,18 +65,18 @@
       dest: /etc/acme-tiny/intermediate.pem
  
   - name: sign certificates
-    shell: python /usr/local/bin/acme-tiny/acme_tiny.py --account-key /etc/acme-tiny/account.key --csr {{ nginx_proxy_ssl_dir }}/{{ item.host }}.csr --acme-dir {{ nginx_proxy_static_root}}/acme-challenge > {{ nginx_proxy_ssl_dir }}/{{ item.host }}-host.crt
+    shell: python /usr/local/bin/acme-tiny/acme_tiny.py --account-key /etc/acme-tiny/account.key --csr {{ nginx_proxy_ssl_dir }}/{{ item.key }}.csr --acme-dir {{ nginx_proxy_static_root}}/acme-challenge > {{ nginx_proxy_ssl_dir }}/{{ item.key }}-host.crt
     args:
-      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.host }}-host.crt"
-    when: item.ssl is defined
-    with_items: "{{ nginx_proxy_hosts }}"
+      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}-host.crt"
+    when: item.value.ssl is defined
+    with_dict: "{{ nginx_proxy_hosts }}"
 
   - name: append intermediary certificates
-    shell: cat {{ nginx_proxy_ssl_dir }}/{{ item.host }}-host.crt /etc/acme-tiny/intermediate.pem > {{ nginx_proxy_ssl_dir }}/{{ item.host }}.pem
+    shell: cat {{ nginx_proxy_ssl_dir }}/{{ item.key }}-host.crt /etc/acme-tiny/intermediate.pem > {{ nginx_proxy_ssl_dir }}/{{ item.key }}.pem
     args:
-      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.host }}.pem"
-    when: item.ssl is defined
-    with_items: "{{ nginx_proxy_hosts }}"
+      creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}.pem"
+    when: item.value.ssl is defined
+    with_dict: "{{ nginx_proxy_hosts }}"
  
   - name: restart nginx
     service:
