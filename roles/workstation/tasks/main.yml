@@ -1,0 +1,6 @@
+  - name: "install workstation_packages"
+    apt: 
+      pkg: "{{ item }}" 
+      state: latest
+    with_items: workstation_packages
+    

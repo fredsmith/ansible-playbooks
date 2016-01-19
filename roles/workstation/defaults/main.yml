@@ -1,0 +1,7 @@
+workstation_packages:
+      - vim
+      - network-manager-openvpn
+      - network-manager-openvpn-gnome
+      - network-manager-openconnect
+      - network-manager-openconnect-gnome
+      - python-dev
