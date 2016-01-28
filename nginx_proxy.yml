@@ -13,6 +13,30 @@
         backend: "http://10.7.0.102:3001"
         ssl: true
         aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
+      dashboard.smith.bz:
+        ssl: true
+        backend: "http://10.7.0.102:3002"
+        auth: true
+        aliases: [dashboard.derf.us, dashboard.fredsmith.org, dashboard.smithfamily.io]
+      containers.smith.bz:
+        ssl: true
+        backend: "http://10.7.0.102:2999"
+        auth: true
+        aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
+      metrics.smith.bz:
+        backend: "http://10.7.0.102:8083"
+        ssl: true
+        auth: true
+        aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
+      tasks.smith.bz:
+        ssl: true
+        backend: "http://10.7.0.102:3000"
+        auth: true
+        aliases: [tasks.derf.us, tasks.fredsmith.org, tasks.smithfamily.io]
+      wallabag.smith.bz:
+        backend: "http://10.7.0.102:3004"
+        ssl: true
+        aliases: [wallabag.derf.us, wallabag.fredsmith.org, wallabag.smithfamily.io]
       jedigurl.com:  
         aliases: [ www.jedigurl.com, jessica.smith.bz ]
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/jedigurl/jedigurl.com.git"
