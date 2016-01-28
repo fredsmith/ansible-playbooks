@@ -36,6 +36,8 @@ server {
       deny all;
   }
 {% endif %}
+
+
 {% if item.value.php is defined %}
   index index.php index.html index.htm;
 
@@ -50,12 +52,22 @@ server {
 {% if item.value.backend is defined %}
   location @{{item.key}}_backend {
     proxy_pass {{ item.value.backend }};
+    proxy_set_header Host            $host;
+    proxy_set_header X-Forwarded-For $remote_addr;
   }
   location / {
+    {% if item.value.auth is defined %}
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/htpasswd;
+    {% endif %}
     try_files $uri @{{ item.key }}_backend;
   }
 {% else %}
   location / {
+    {% if item.value.auth is defined %}
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/htpasswd;
+    {% endif %}
     root {{nginx_proxy_static_root}}/{{ item.key }};
   }
 {% endif %}
