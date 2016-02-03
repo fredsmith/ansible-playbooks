@@ -18,16 +18,10 @@
         backend: "http://10.7.0.102:3002"
         auth: true
         aliases: [dashboard.derf.us, dashboard.fredsmith.org, dashboard.smithfamily.io]
-      containers.smith.bz:
-        ssl: true
-        backend: "http://10.7.0.102:2999"
-        auth: true
-        aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
-      metrics.smith.bz:
-        backend: "http://10.7.0.102:8083"
+      graphs.smith.bz:
         ssl: true
         auth: true
-        aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
+        backend: "http://10.7.0.102:3005"
       tasks.smith.bz:
         ssl: true
         backend: "http://10.7.0.102:3000"
