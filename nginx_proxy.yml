@@ -22,6 +22,11 @@
         ssl: true
         auth: true
         backend: "http://10.7.0.102:3005"
+      metrics.smith.bz:
+        ssl: true
+        auth: true
+        backend: "http://10.7.0.102:3005"
+        aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
       tasks.smith.bz:
         ssl: true
         backend: "http://10.7.0.102:3000"
