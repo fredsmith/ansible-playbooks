@@ -54,11 +54,13 @@ server {
     proxy_pass {{ item.value.backend }};
     proxy_set_header Host            $host;
     proxy_set_header X-Forwarded-For $remote_addr;
+    proxy_set_header X-WEBAUTH-USER  $remote_user;
   }
   location / {
     {% if item.value.auth is defined %}
     auth_basic "Restricted";
     auth_basic_user_file /etc/nginx/htpasswd;
+
     {% endif %}
     try_files $uri @{{ item.key }}_backend;
   }
