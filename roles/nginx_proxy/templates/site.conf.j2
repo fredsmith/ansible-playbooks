@@ -71,6 +71,9 @@ server {
     auth_basic_user_file /etc/nginx/htpasswd;
     {% endif %}
     root {{nginx_proxy_static_root}}/{{ item.key }};
+    {% if item.value.indexes is defined %}
+    autoindex on;
+    {% endif %}
   }
 {% endif %}
 }

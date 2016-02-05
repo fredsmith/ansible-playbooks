@@ -8,6 +8,7 @@
         aliases: [derf.us, fredsmith.us, fredsmith.org, fredsmith.net, www.derf.us, www.fredsmith.us, www.fredsmith.net, www.fredsmith.org] 
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/fred.smith.bz.git"
         ssl: true
+        indexes: true
         php: true
       git.smith.bz:
         backend: "http://10.7.0.102:3001"
@@ -22,6 +23,9 @@
         ssl: true
         auth: true
         backend: "http://10.7.0.102:3005"
+      containers.smith.bz:
+        backend: "http://10.7.0.102:8080"
+        aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
       metrics.smith.bz:
         ssl: true
         auth: true
