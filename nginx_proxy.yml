@@ -25,6 +25,7 @@
         backend: "http://10.7.0.102:3005"
       containers.smith.bz:
         backend: "http://10.7.0.102:8080"
+        ssl: true
         aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
       metrics.smith.bz:
         ssl: true
