@@ -10,10 +10,21 @@
         ssl: true
         indexes: true
         php: true
+      home.smith.bz:
+        repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/managethis.git"
+        auth: true
       git.smith.bz:
-        backend: "http://10.7.0.102:3001"
+        backend: "http://10.7.0.81:3001"
         ssl: true
         aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
+      plex.smith.bz:
+        backend: "http://10.7.0.103:32400"
+        ssl: true
+        auth: true
+      downloads.smith.bz:
+        backend: "http://10.7.0.103:8081"
+        ssl: true
+        auth: true
       dashboard.smith.bz:
         ssl: true
         backend: "http://10.7.0.102:3002"
@@ -24,13 +35,13 @@
         auth: true
         backend: "http://10.7.0.102:3005"
       containers.smith.bz:
-        backend: "http://10.7.0.102:8080"
+        backend: "http://10.7.0.80:8080"
         ssl: true
         aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
       metrics.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.102:3005"
+        backend: "http://10.7.0.81:3005"
         aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
       tasks.smith.bz:
         ssl: true
