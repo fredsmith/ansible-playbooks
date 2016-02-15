@@ -22,13 +22,35 @@
     apt_repository:
       repo: "{{ docker_repo }}"
 
-  - name: "install packages"
+  - name: install packages
     apt: 
       pkg: "{{ item }}" 
       state: latest
     sudo: yes 
     with_items: docker_packages
     register: restart_docker
+
+  - name: create docker service override directory
+    file:
+      path: "/etc/systemd/system/docker.service.d"
+      state: directory
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+
+  - name: configure docker swarm
+    template:
+      src: override.conf.j2
+      dest: "/etc/systemd/system/docker.service.d/override.conf"
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+    register: restart_systemd
+
+  - name: restart systemd
+    command: systemctl daemon-reload
+    register: restart_docker
+    when: restart_systemd.changed
 
   - name: restart docker
     service:
