@@ -14,7 +14,7 @@
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/managethis.git"
         auth: true
       git.smith.bz:
-        backend: "http://10.7.0.81:3001"
+        backend: "http://10.7.0.85:3001"
         ssl: true
         aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
       plex.smith.bz:
@@ -33,15 +33,15 @@
       graphs.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.102:3005"
+        backend: "http://10.7.0.85:3005"
       containers.smith.bz:
-        backend: "http://10.7.0.80:8080"
+        backend: "http://10.7.0.85:3007"
         ssl: true
         aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
       metrics.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.81:3005"
+        backend: "http://10.7.0.85:3005"
         aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
       tasks.smith.bz:
         ssl: true
@@ -49,7 +49,7 @@
         auth: true
         aliases: [tasks.derf.us, tasks.fredsmith.org, tasks.smithfamily.io]
       wallabag.smith.bz:
-        backend: "http://10.7.0.102:3004"
+        backend: "http://10.7.0.81:3004"
         ssl: true
         aliases: [wallabag.derf.us, wallabag.fredsmith.org, wallabag.smithfamily.io]
       jedigurl.com:  
