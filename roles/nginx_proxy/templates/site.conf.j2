@@ -23,6 +23,8 @@ server {
   listen [::]:443 ssl;
   server_name {{ item.key }}{% if item.value.aliases is defined %}{% for alias in item.value.aliases %} {{ alias }}{% endfor %}{% endif %};
 
+  client_max_body_size 0;
+
   ssl_certificate {{ nginx_proxy_ssl_dir }}/{{ item.key }}.pem;
   ssl_certificate_key {{ nginx_proxy_ssl_dir }}/{{ item.key }}.key;
   ssl_session_timeout 5m;
