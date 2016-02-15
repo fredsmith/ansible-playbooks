@@ -27,6 +27,15 @@
       group: root
       mode: u=r
 
+  - name: update default.conf
+    template:
+      src: default.conf.j2
+      dest: "/etc/nginx/sites-enabled/default"
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
+    register: restart_nginx
+
   - name: update site.conf
     template:
       src: site.conf.j2
