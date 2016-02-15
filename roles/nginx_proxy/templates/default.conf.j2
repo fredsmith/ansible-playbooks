@@ -1,0 +1,19 @@
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name pandora.smith.bz;
+
+  root /var/www/html;
+
+  client_max_body_size 0;
+
+  location /.well-known/acme-challenge/ {
+    alias {{nginx_proxy_static_root}}/acme-challenge/;
+  }
+  location ~ /\.git {
+      deny all;
+  }
+  location / {
+    try_files $uri $uri/ =404;
+  }
+}
