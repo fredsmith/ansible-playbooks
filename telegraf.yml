@@ -6,7 +6,7 @@
     - telegraf
   vars:
     telegraf_influxdb_urls:
-      - http://10.7.0.85:8086
+      - http://10.7.0.80:8086
     telegraf_plugins_enabled:
       - cpu
       - disk
