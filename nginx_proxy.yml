@@ -13,12 +13,18 @@
       home.smith.bz:
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/managethis.git"
         auth: true
+      router.smith.bz:
+        backend: "https://10.7.0.1:443"
+        ssl: true
+      elasticsearch.smith.bz:
+        backend: "http://10.7.0.80:80"
+        ssl: true
       git.smith.bz:
-        backend: "http://10.7.0.85:3001"
+        backend: "http://10.7.0.81:3001"
         ssl: true
         aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
       plex.smith.bz:
-        backend: "http://10.7.0.103:32400"
+        backend: "http://10.7.0.85:32400"
         ssl: true
         auth: true
       downloads.smith.bz:
@@ -41,7 +47,7 @@
       metrics.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.85:3005"
+        backend: "http://10.7.0.81:3005"
         aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
       tasks.smith.bz:
         ssl: true
