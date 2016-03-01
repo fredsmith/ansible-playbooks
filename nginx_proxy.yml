@@ -28,7 +28,11 @@
         ssl: true
         auth: true
       downloads.smith.bz:
-        backend: "http://10.7.0.103:8081"
+        backend: "http://10.7.0.83:3010"
+        ssl: true
+        auth: true
+      tv.smith.bz:
+        backend: "http://10.7.0.81:3009"
         ssl: true
         auth: true
       dashboard.smith.bz:
