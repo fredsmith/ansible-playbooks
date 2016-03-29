@@ -3,6 +3,8 @@
   sudo: True
   gather_facts: True
   vars:
+    nginx_default_redirect_url: "https://www.smith.bz/"
+    nginx_default_hostname: 'pandora.smith.bz'
     nginx_proxy_hosts:
       fred.smith.bz:
         aliases: [derf.us, fredsmith.us, fredsmith.org, fredsmith.net, www.derf.us, www.fredsmith.us, www.fredsmith.net, www.fredsmith.org] 
@@ -16,9 +18,17 @@
       router.smith.bz:
         backend: "https://10.7.0.1:443"
         ssl: true
+      irc.smith.bz:
+        backend: "http://10.7.0.82:3008"
+        ssl: true
       elasticsearch.smith.bz:
         backend: "http://10.7.0.80:80"
         ssl: true
+        auth: true
+      hass.smith.bz:
+        backend: "http://10.7.0.50:8123"
+        ssl: true
+        auth: true
       git.smith.bz:
         backend: "http://10.7.0.81:3001"
         ssl: true

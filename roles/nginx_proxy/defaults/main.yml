@@ -5,6 +5,8 @@ nginx_proxy_packages:
   - php5-fpm
 nginx_proxy_ssl_dir: "/etc/nginx/ssl"
 nginx_proxy_static_root: "/var/www"
+nginx_default_hostname: 'localhost'
+nginx_default_redirect_url: !!null
 nginx_proxy_hosts:
   - { host: foo.site, backend: "1.2.3.4:8080", ssl: true }
   - { host: bar.site, backend: "1.2.3.5:8080" }
