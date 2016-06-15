@@ -25,12 +25,12 @@
         backend: "http://10.7.0.80:80"
         ssl: true
         auth: true
-      hass.smith.bz:
-        backend: "http://10.7.0.50:8123"
+      genie.smith.bz:
+        backend: "http://10.7.0.50:80"
         ssl: true
         auth: true
       git.smith.bz:
-        backend: "http://10.7.0.81:3001"
+        backend: "http://10.7.0.83:3001"
         ssl: true
         aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
       plex.smith.bz:
@@ -61,7 +61,7 @@
       metrics.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.81:3005"
+        backend: "http://10.7.0.84:3005"
         aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
       tasks.smith.bz:
         ssl: true
@@ -89,6 +89,11 @@
         aliases: [ nathan.smithfamily.io, nathan.smith.bz ]
         ssl: true
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/nathan.smith.bz.git"
+      files.derf.us:
+        aliases: [ files.fred.smith.bz ]
+        ssl: true
+        owner: "derf"
+        repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/files.derf.us.git"
       smith.bz:
         aliases: [ smithfamily.io, www.smith.bz, fredandjess.com, jessandfred.com, www.fredandjess.com, www.jessandfred.com, www.smithfamily.io, www.smithfamily.space ]
         ssl: true

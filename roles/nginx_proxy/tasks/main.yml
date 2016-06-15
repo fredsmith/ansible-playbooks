@@ -53,6 +53,15 @@
     when: item.value.repo is defined
     with_dict: "{{ nginx_proxy_hosts }}"
 
+  - name: chown sites
+    file:
+      recurse: yes
+      path: "{{ nginx_proxy_static_root }}/{{ item.key }}"
+      owner: "{{ item.value.owner }}"
+    when: item.value.owner is defined
+    with_dict: "{{ nginx_proxy_hosts }}"
+
+
   - name: generate keys
     shell: openssl genrsa 4096 > {{ nginx_proxy_ssl_dir }}/{{ item.key }}.key
     args:
@@ -70,7 +79,7 @@
 
   - name: download intermediary cert
     get_url:
-      url: https://letsencrypt.org/certs/lets-encrypt-x1-cross-signed.pem
+      url: https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
       dest: /etc/acme-tiny/intermediate.pem
  
   - name: sign certificates
