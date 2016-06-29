@@ -21,16 +21,16 @@
       irc.smith.bz:
         backend: "http://10.7.0.82:3008"
         ssl: true
-      elasticsearch.smith.bz:
-        backend: "http://10.7.0.80:80"
+      homeassistant.smith.bz:
+        backend: "http://10.7.0.85:8123"
         ssl: true
         auth: true
-      genie.smith.bz:
-        backend: "http://10.7.0.50:80"
+      vera.smith.bz:
+        backend: "http://10.7.0.16:80"
         ssl: true
         auth: true
       git.smith.bz:
-        backend: "http://10.7.0.83:3001"
+        backend: "http://10.7.0.84:3001"
         ssl: true
         aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
       plex.smith.bz:
@@ -38,40 +38,29 @@
         ssl: true
         auth: true
       downloads.smith.bz:
-        backend: "http://10.7.0.83:3010"
+        backend: "http://10.7.0.82:3010"
         ssl: true
         auth: true
       tv.smith.bz:
         backend: "http://10.7.0.81:3009"
         ssl: true
         auth: true
-      dashboard.smith.bz:
-        ssl: true
-        backend: "http://10.7.0.102:3002"
-        auth: true
-        aliases: [dashboard.derf.us, dashboard.fredsmith.org, dashboard.smithfamily.io]
       graphs.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.85:3005"
+        backend: "http://10.7.0.81:3005"
+      solar.smith.bz:
+        ssl: true
+        auth: true
+        backend: "http://10.7.0.15:80"
+      monitoring.smith.bz:
+        ssl: true
+        auth: true
+        backend: "http://10.7.0.85:9090"
       containers.smith.bz:
         backend: "http://10.7.0.85:3007"
         ssl: true
         aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
-      metrics.smith.bz:
-        ssl: true
-        auth: true
-        backend: "http://10.7.0.84:3005"
-        aliases: [metrics.derf.us, metrics.fredsmith.org, metrics.smithfamily.io]
-      tasks.smith.bz:
-        ssl: true
-        backend: "http://10.7.0.102:3000"
-        auth: true
-        aliases: [tasks.derf.us, tasks.fredsmith.org, tasks.smithfamily.io]
-      wallabag.smith.bz:
-        backend: "http://10.7.0.81:3004"
-        ssl: true
-        aliases: [wallabag.derf.us, wallabag.fredsmith.org, wallabag.smithfamily.io]
       jedigurl.com:  
         aliases: [ www.jedigurl.com, jessica.smith.bz ]
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/jedigurl/jedigurl.com.git"
