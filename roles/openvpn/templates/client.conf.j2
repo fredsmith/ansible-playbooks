@@ -88,7 +88,7 @@ key {{ openvpn_client_name}}.key
 # and the extendedKeyUsage to
 #   serverAuth
 # EasyRSA can do this for you.
-remote-cert-tls server
+#remote-cert-tls server
 
 # If a tls-auth key is used on the server
 # then every client must also have the key.
@@ -102,7 +102,7 @@ remote-cert-tls server
 # Enable compression on the VPN link.
 # Don't enable this unless it is also
 # enabled in the server config file.
-comp-lzo
+#comp-lzo
 
 # Set log file verbosity.
 verb 3

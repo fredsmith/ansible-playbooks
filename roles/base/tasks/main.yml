@@ -1,29 +1,41 @@
   - name: create groups
     group:
       name: "{{ item }}" 
-    with_items: base_groups
+    with_items: 
+      - "{{ base_group_names }}"
+    tags:
+      - setup
 
   - name: create accounts
     user:
-      name: "{{ item.name }}" 
-      comment: "{{ item.comment }}" 
+      name: "{{ item.user_name }}" 
+      comment: "{{ item.comment }}"
       uid: "{{ item.uid }}" 
-      groups: "{{ item.groups }}"
+      groups: "{{ item.group_names }}"
       shell: "/bin/bash"
-    with_items: user_info
+    with_items: 
+      - "{{ user_info }}"
+    tags:
+      - setup
 
   - name: set up keys
     authorized_key:
       exclusive: true
-      user: "{{ item.name }}"
+      user: "{{ item.user_name }}"
       key: "{{ item.key }}"
-    with_items: user_info
+    with_items: 
+      - "{{ user_info }}"
+    tags:
+      - setup
 
   - name: "install base-packages"
     apt: 
       pkg: "{{ item }}" 
       state: latest
-    with_items: base_packages
+    with_items: 
+      - "{{ base_packages }}"
+    tags:
+      - setup
 
   - name: update sudoers
     copy:
@@ -32,4 +44,17 @@
       owner: root
       group: root
       mode: 0400
-    
+    tags:
+      - setup
+
+  - name: ignore lid switch
+    lineinfile:
+      name: '/etc/systemd/logind.conf'
+      regexp: '^HandleLidSwitch'
+      insertafter: '^#HandleLidSwitch'
+      line: 'HandleLidSwitch=ignore'
+
+
+
+
+

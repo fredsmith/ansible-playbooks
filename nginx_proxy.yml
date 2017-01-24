@@ -12,79 +12,98 @@
         ssl: true
         indexes: true
         php: true
+      siglinux.org:
+        aliases: [www.siglinux.org] 
+        repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/siglinux.org.git"
+        ssl: true
+        php: true
       home.smith.bz:
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/managethis.git"
         auth: true
       router.smith.bz:
         backend: "https://10.7.0.1:443"
         ssl: true
-      irc.smith.bz:
-        backend: "http://10.7.0.82:3008"
-        ssl: true
       homeassistant.smith.bz:
-        backend: "http://10.7.0.85:8123"
+        backend: "http://10.7.0.81:3011"
         ssl: true
         auth: true
       vera.smith.bz:
         backend: "http://10.7.0.16:80"
         ssl: true
         auth: true
-      git.smith.bz:
-        backend: "http://10.7.0.84:3001"
+      garage.smith.bz:
+        backend: "http://10.7.0.18:8081"
         ssl: true
-        aliases: [git.derf.us, git.fredsmith.org, git.smithfamily.io]
+        auth: true
+      git.smith.bz:
+        backend: "http://10.7.0.81:3001"
+        ssl: true
+        aliases: [git.derf.us, git.fredsmith.org]
+      paste.smith.bz:
+        backend: "http://10.7.0.86:3011"
+        ssl: true
+        aliases: [paste.derf.us, paste.fredsmith.org]
       plex.smith.bz:
         backend: "http://10.7.0.85:32400"
         ssl: true
         auth: true
       downloads.smith.bz:
-        backend: "http://10.7.0.82:3010"
+        backend: "http://10.7.0.85:3010"
         ssl: true
         auth: true
       tv.smith.bz:
-        backend: "http://10.7.0.81:3009"
+        backend: "http://10.7.0.85:3009"
+        ssl: true
+        auth: true
+      music.smith.bz:
+        backend: "http://10.7.0.85:3014"
         ssl: true
         auth: true
       graphs.smith.bz:
         ssl: true
         auth: true
-        backend: "http://10.7.0.81:3005"
+        backend: "http://10.7.0.83:3000"
+      status.smith.bz:
+        ssl: true
+        aliases: [status.derf.us, status.fredsmith.org]
+        owner: "derf"
+        repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/status.smith.bz.git"
+      monitoring.smith.bz:
+        ssl: true
+        auth: true
+        backend: "http://10.7.0.80:9090"
       solar.smith.bz:
         ssl: true
         auth: true
         backend: "http://10.7.0.15:80"
-      monitoring.smith.bz:
-        ssl: true
-        auth: true
-        backend: "http://10.7.0.85:9090"
       containers.smith.bz:
         backend: "http://10.7.0.85:3007"
         ssl: true
-        aliases: [containers.derf.us, containers.fredsmith.org, containers.smithfamily.io]
+        aliases: [containers.derf.us, containers.fredsmith.org]
       jedigurl.com:  
         aliases: [ www.jedigurl.com, jessica.smith.bz ]
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/jedigurl/jedigurl.com.git"
         php: true
         ssl: true
       andrew.smith.bz:
-        aliases: [ andrew.smithfamily.io, andrew.smith.bz ]
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/andrew.smith.bz.git"
         ssl: true
       sean.smith.bz:
-        aliases: [ sean.smithfamily.io, sean.smith.bz ]
         ssl: true
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/sean.smith.bz.git"
       nathan.smith.bz:
-        aliases: [ nathan.smithfamily.io, nathan.smith.bz ]
         ssl: true
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/nathan.smith.bz.git"
       files.derf.us:
-        aliases: [ files.fred.smith.bz ]
         ssl: true
         owner: "derf"
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/files.derf.us.git"
+      xicada.net:
+        aliases: [ xicada.net, xicada.com, xicada.org, www.xicada.com, www.xicada.net, www.xicada.org ] 
+        ssl: true
+        repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/xicada.git"
       smith.bz:
-        aliases: [ smithfamily.io, www.smith.bz, fredandjess.com, jessandfred.com, www.fredandjess.com, www.jessandfred.com, www.smithfamily.io, www.smithfamily.space ]
+        aliases: [ www.smith.bz, fredandjess.com, jessandfred.com, www.fredandjess.com, www.jessandfred.com, www.smithfamily.space ]
         ssl: true
         repo: "https://{{ GIT_CREDENTIALS }}@git.smith.bz/derf/smith.bz.git"
      

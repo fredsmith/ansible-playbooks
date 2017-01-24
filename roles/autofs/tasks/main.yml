@@ -2,7 +2,8 @@
     apt: 
       pkg: "{{ item }}" 
       state: latest
-    with_items: autofs_packages
+    with_items: 
+     - "{{ autofs_packages }}"
 
   - name: create /etc/auto.master.d
     file:

@@ -4,12 +4,15 @@
     apt: 
       pkg: "{{ item }}" 
       state: latest
-    with_items: nginx_proxy_packages
+    with_items: 
+      - "{{ nginx_proxy_packages }}"
+    tags: setup
 
   - name: install acme-tiny
     git:
       dest: "/usr/local/bin/acme-tiny"
       repo: "https://github.com/diafygi/acme-tiny/"
+    tags: setup
 
   - name: create acme-tiny directories
     file:
@@ -18,6 +21,7 @@
     with_items:
       - "{{ nginx_proxy_static_root}}/acme-challenge"
       - "/etc/acme-tiny"
+    tags: setup
 
   - name: install account.key
     template:
@@ -26,6 +30,7 @@
       owner: root
       group: root
       mode: u=r
+    tags: setup
 
   - name: update default.conf
     template:
@@ -35,6 +40,7 @@
       group: root
       mode: u=rw,g=r,o=r
     register: restart_nginx
+    tags: setup
 
   - name: update site.conf
     template:
@@ -45,6 +51,7 @@
       mode: u=rw,g=r,o=r
     with_dict: "{{ nginx_proxy_hosts }}"
     register: restart_nginx
+    tags: sites
 
   - name: deploy sites
     git:
@@ -52,6 +59,9 @@
       repo: "{{ item.value.repo }}"
     when: item.value.repo is defined
     with_dict: "{{ nginx_proxy_hosts }}"
+    tags: 
+      - sites
+      - checkout
 
   - name: chown sites
     file:
@@ -60,6 +70,7 @@
       owner: "{{ item.value.owner }}"
     when: item.value.owner is defined
     with_dict: "{{ nginx_proxy_hosts }}"
+    tags: sites
 
 
   - name: generate keys
@@ -68,6 +79,8 @@
       creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}.key"
     when: item.value.ssl is defined
     with_dict: "{{ nginx_proxy_hosts }}"
+    register: restart_nginx
+    tags: ssl
  
   - name: generate CSRs
     shell: 'openssl req -new -sha256 -key {{ nginx_proxy_ssl_dir }}/{{ item.key }}.key -subj "/" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:{{ item.key }}{% if item.value.aliases is defined %}{% for alias in item.value.aliases %},DNS:{{ alias }}{% endfor %}{% endif %}")) > {{ nginx_proxy_ssl_dir }}/{{ item.key }}.csr'
@@ -76,11 +89,13 @@
       creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}.csr"
     when: item.value.ssl is defined
     with_dict: "{{ nginx_proxy_hosts }}"
+    tags: ssl
 
   - name: download intermediary cert
     get_url:
       url: https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
       dest: /etc/acme-tiny/intermediate.pem
+    tags: ssl
  
   - name: sign certificates
     shell: python /usr/local/bin/acme-tiny/acme_tiny.py --account-key /etc/acme-tiny/account.key --csr {{ nginx_proxy_ssl_dir }}/{{ item.key }}.csr --acme-dir {{ nginx_proxy_static_root}}/acme-challenge > {{ nginx_proxy_ssl_dir }}/{{ item.key }}-host.crt
@@ -88,6 +103,8 @@
       creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}-host.crt"
     when: item.value.ssl is defined
     with_dict: "{{ nginx_proxy_hosts }}"
+    register: restart_nginx
+    tags: ssl
 
   - name: append intermediary certificates
     shell: cat {{ nginx_proxy_ssl_dir }}/{{ item.key }}-host.crt /etc/acme-tiny/intermediate.pem > {{ nginx_proxy_ssl_dir }}/{{ item.key }}.pem
@@ -95,6 +112,7 @@
       creates: "{{ nginx_proxy_ssl_dir }}/{{ item.key }}.pem"
     when: item.value.ssl is defined
     with_dict: "{{ nginx_proxy_hosts }}"
+    tags: ssl
  
   - name: restart nginx
     service:

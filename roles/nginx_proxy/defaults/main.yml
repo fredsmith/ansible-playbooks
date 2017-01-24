@@ -1,8 +1,9 @@
 nginx_proxy_packages:
   - nginx
-  - php5-common
-  - php5-cli
-  - php5-fpm
+  - php-common
+  - php-cli
+  - php-fpm
+  - letsencrypt
 nginx_proxy_ssl_dir: "/etc/nginx/ssl"
 nginx_proxy_static_root: "/var/www"
 nginx_default_hostname: 'localhost'
